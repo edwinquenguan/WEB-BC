@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billares Colpatria Restrepo | Club de Billar Premium</title>
+    <meta name="description" content="Disfruta de la mejor experiencia de billar en el Barrio Restrepo de Bogotá. Mesas profesionales de 3 bandas y pool, torneos y zona de bar. Reserva tu mesa en línea.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="neon-text-blue">BILLARES</span><span class="neon-text-pink">COLPATRIA</span>
+            </a>
+            <nav class="navbar">
+                <a href="#hero" class="nav-link active">Inicio</a>
+                <a href="#booking" class="nav-link">Reservas</a>
+                <a href="#menu" class="nav-link">Menú Bar</a>
+                <a href="#tournaments" class="nav-link">Torneos</a>
+                <a href="#contact" class="nav-link">Contacto</a>
+            </nav>
+            <div class="nav-actions">
+                <!-- Authentication links -->
+                <div class="auth-group" id="authNavGroup">
+                    <button class="btn btn-outline btn-sm mr-2" id="loginNavBtn">Iniciar Sesión</button>
+                    <button class="btn btn-primary btn-sm" id="registerNavBtn">Registrarse</button>
+                </div>
+                <!-- Logged in user profile -->
+                <div class="user-badge-group hidden" id="userBadgeGroup">
+                    <button class="profile-btn" id="dashboardToggleBtn">
+                        <i data-lucide="user"></i> <span id="navUsername">Mi Cuenta</span>
+                    </button>
+                </div>
+                <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">
+            <i data-lucide="x"></i>
+        </button>
+        <nav class="mobile-nav">
+            <a href="#hero" class="mobile-link">Inicio</a>
+            <a href="#booking" class="mobile-link">Reservas</a>
+            <a href="#menu" class="mobile-link">Menú Bar</a>
+            <a href="#tournaments" class="mobile-link">Torneos</a>
+            <a href="#contact" class="mobile-link">Contacto</a>
+            <div class="mobile-auth-divider"></div>
+            <div id="mobileAuthGroup">
+                <button class="btn btn-outline btn-block mb-2" id="mobileLoginBtn">Iniciar Sesión</button>
+                <button class="btn btn-primary btn-block" id="mobileRegisterBtn">Registrarse</button>
+            </div>
+            <div class="hidden" id="mobileUserBadge">
+                <p class="mobile-greeting">Hola, <span id="mobileUsername">Usuario</span></p>
+                <button class="btn btn-primary btn-block mb-2" id="mobileDashboardBtn">Mi Panel / Cuenta</button>
+                <button class="btn btn-outline btn-block" id="mobileLogoutBtn">Cerrar Sesión</button>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero-section">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <div class="hero-tag">BOGOTÁ - BARRIO RESTREPO</div>
+                <h1 class="hero-title">El Billar de Campeonato en <span class="neon-text-green">Tu Barrio</span></h1>
+                <p class="hero-subtitle">Instalaciones profesionales de primer nivel. Contamos con 5 mesas de 3 Bandas profesionales y mesa de Pool. La experiencia definitiva para los apasionados del taco.</p>
+                <div class="hero-btns">
+                    <a href="#booking" class="btn btn-primary btn-lg">Apartar una Mesa</a>
+                    <a href="#menu" class="btn btn-outline btn-lg">Menú del Bar</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">5</span>
+                        <span class="stat-label">Mesas de 3 Bandas</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">1</span>
+                        <span class="stat-label">Mesa de Pool</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">Ambiente Deportivo</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <i data-lucide="chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- BOOKING SECTION (INTERACTIVE TABLE RESERVATION) -->
+        <section id="booking" class="section booking-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">APARTAR MESA EN LÍNEA</span>
+                    <h2 class="section-title">Nuestras <span class="neon-text-blue">Mesas de Juego</span></h2>
+                    <p class="section-subtitle">Selecciona tu mesa en el plano interactivo. Contamos con 5 mesas de Carambola (3 Bandas) de paño azul rápido y 1 mesa de Pool con troneras clásicas.</p>
+                </div>
+
+                <div class="booking-grid">
+                    <!-- Table Map Wrapper -->
+                    <div class="map-wrapper card">
+                        <div class="map-header">
+                            <h3 class="card-title"><i data-lucide="map"></i> Mapa del Club</h3>
+                            <div class="map-legend">
+                                <span class="legend-item"><span class="dot dot-free"></span> Libre</span>
+                                <span class="legend-item"><span class="dot dot-busy"></span> Ocupada</span>
+                                <span class="legend-item"><span class="dot dot-selected"></span> Tu Selección</span>
+                            </div>
+                        </div>
+                        
+                        <div class="table-map">
+                            <!-- Entrance and Lounge decorations -->
+                            <div class="map-decor entrance"><span>Entrada</span></div>
+                            <div class="map-decor bar-area"><span>Bar & Cafetería</span></div>
+                            
+                            <!-- 5 Carom Tables (3 bandas) - blue felt & no pockets styling in CSS -->
+                            <div class="pool-table-item carom-table occupied" data-id="1" data-type="3 Bandas (Carambola)" data-price="15000">
+                                <span class="table-label">Mesa 1</span>
+                                <span class="table-type">3 Bandas</span>
+                            </div>
+                            <div class="pool-table-item carom-table free" data-id="2" data-type="3 Bandas (Carambola)" data-price="15000">
+                                <span class="table-label">Mesa 2</span>
+                                <span class="table-type">3 Bandas</span>
+                            </div>
+                            <div class="pool-table-item carom-table free" data-id="3" data-type="3 Bandas (Carambola)" data-price="15000">
+                                <span class="table-label">Mesa 3</span>
+                                <span class="table-type">3 Bandas</span>
+                            </div>
+                            <div class="pool-table-item carom-table occupied" data-id="4" data-type="3 Bandas (Carambola)" data-price="15000">
+                                <span class="table-label">Mesa 4</span>
+                                <span class="table-type">3 Bandas</span>
+                            </div>
+                            <div class="pool-table-item carom-table free" data-id="5" data-type="3 Bandas (Carambola)" data-price="15000">
+                                <span class="table-label">Mesa 5</span>
+                                <span class="table-type">3 Bandas</span>
+                            </div>
+                            
+                            <!-- 1 Pool Table (pockets, green felt styling in CSS) -->
+                            <div class="pool-table-item pool-table free" data-id="6" data-type="Mesa de Pool" data-price="12000">
+                                <span class="table-label">Mesa 6 (Pool)</span>
+                                <span class="table-type">Pool</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar panel -->
+                    <div class="booking-sidebar card disabled" id="bookingPanel">
+                        <div class="empty-panel-state" id="emptyPanelState">
+                            <i data-lucide="hand" class="pulse-icon"></i>
+                            <h4>Selecciona una Mesa</h4>
+                            <p>Toca cualquiera de las mesas disponibles en el mapa para configurar tu reserva y ver tarifas.</p>
+                        </div>
+                        
+                        <div class="panel-content hidden" id="panelContent">
+                            <div class="panel-header">
+                                <span class="badge" id="panelTableType">3 Bandas</span>
+                                <h3 id="panelTableName">Mesa 2</h3>
+                            </div>
+                            <hr class="panel-divider">
+                            <form id="bookingForm" class="booking-form">
+                                <div class="form-group">
+                                    <label for="bookingDate"><i data-lucide="calendar"></i> Fecha</label>
+                                    <input type="date" id="bookingDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookingTime"><i data-lucide="clock"></i> Hora de Inicio</label>
+                                    <input type="time" id="bookingTime" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookingDuration"><i data-lucide="hourglass"></i> Duración: <span id="durationValue">1 hora</span></label>
+                                    <input type="range" id="bookingDuration" min="1" max="5" value="1" step="1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label><i data-lucide="plus-circle"></i> Servicios Opcionales</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-container">
+                                            <input type="checkbox" id="optCues">
+                                            <span class="checkmark"></span>
+                                            Tacos Profesionales Carbono (+$5.000/h)
+                                        </label>
+                                        <label class="checkbox-container">
+                                            <input type="checkbox" id="optDrinks">
+                                            <span class="checkmark"></span>
+                                            Servicio Bar a la Mesa (+$10.000 fijo)
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="price-summary">
+                                    <div class="price-row">
+                                        <span>Tarifa Base (<span id="baseRatePerHour">$15.000</span>/h):</span>
+                                        <span id="summaryBasePrice">$15.000 COP</span>
+                                    </div>
+                                    <div class="price-row extra-row hidden" id="extraCuesRow">
+                                        <span>Tacos de Carbono:</span>
+                                        <span id="summaryCuesPrice">$5.000 COP</span>
+                                    </div>
+                                    <div class="price-row extra-row hidden" id="extraDrinksRow">
+                                        <span>Servicio Preferente:</span>
+                                        <span id="summaryDrinksPrice">$10.000 COP</span>
+                                    </div>
+                                    <hr class="summary-line">
+                                    <div class="price-row total-row">
+                                        <span>Total Estimado:</span>
+                                        <span id="summaryTotalPrice">$15.000 COP</span>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block">Apartar Mesa</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INSTALACIONES GALLERY (USER UPLOADED PHOTO SHOWCASE) -->
+        <section class="section gallery-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">NUESTRA SEDE</span>
+                    <h2 class="section-title">El Ambiente en <span class="neon-text-pink">Restrepo</span></h2>
+                    <p class="section-subtitle">Nuestras mesas de caoba, paños reglamentarios y pantallas de conteo digital te garantizan el mejor nivel de juego.</p>
+                </div>
+                
+                <div class="gallery-wrapper card">
+                    <div class="gallery-grid">
+                        <div class="gallery-main-img">
+                            <img src="assets/local_hall.png" alt="Instalaciones de Billares Colpatria Barrio Restrepo" class="gallery-img">
+                            <div class="gallery-caption">
+                                <h4>Zona Principal de Juego</h4>
+                                <p>Nuestras mesas profesionales de Carambola alineadas y listas para la acción.</p>
+                            </div>
+                        </div>
+                        <div class="gallery-sidebar-text">
+                            <h3>Infraestructura Profesional</h3>
+                            <p class="mb-4">Diseñado para deportistas. Contamos con iluminación LED focalizada sobre la mesa para evitar reflejos molestos, paños de fricción ultrarrápida, y tecnología de control electrónico por mesa.</p>
+                            <div class="gallery-bullets">
+                                <div class="bullet-item">
+                                    <i data-lucide="check-circle" class="text-blue"></i>
+                                    <span>5 Mesas Pro 3-Bandas (Blue Cloth)</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i data-lucide="check-circle" class="text-blue"></i>
+                                    <span>1 Mesa de Pool de Troneras Especiales</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i data-lucide="check-circle" class="text-blue"></i>
+                                    <span>Sistema Digital de Marcadores</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MENU & BAR SECTION -->
+        <section id="menu" class="section menu-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">GASTRONOMÍA Y CAFETERÍA</span>
+                    <h2 class="section-title">Nuestra Carta de <span class="neon-text-pink">Menú & Bar</span></h2>
+                    <p class="section-subtitle">Disfruta de una cerveza bien fría, café premium colombiano o deliciosas comidas rápidas entre jugadas.</p>
+                </div>
+
+                <!-- Tabs Container -->
+                <div class="menu-tabs">
+                    <button class="tab-btn active" data-category="drinks">
+                        <i data-lucide="wine"></i> Bebidas y Cervezas
+                    </button>
+                    <button class="tab-btn" data-category="food">
+                        <i data-lucide="utensils"></i> Snacks y Comidas
+                    </button>
+                </div>
+
+                <!-- Menu Cards Grid -->
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Drink 1 -->
+                    <div class="menu-item-card" data-category="drinks">
+                        <div class="menu-item-img drinks-img-1"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-title">Grand Blue Lagoon</h3>
+                                <span class="menu-item-price">$15.000</span>
+                            </div>
+                            <p class="menu-item-desc">Vodka premium, curaçao azul, jugo de limón y tónica. Un cóctel fresco y sofisticado de firma.</p>
+                            <div class="menu-item-actions">
+                                <button class="btn btn-circle btn-minus" data-id="drink-1"><i data-lucide="minus"></i></button>
+                                <span class="item-qty" id="qty-drink-1">0</span>
+                                <button class="btn btn-circle btn-plus" data-id="drink-1"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drink 2 -->
+                    <div class="menu-item-card" data-category="drinks">
+                        <div class="menu-item-img drinks-img-2"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-title">Margarita Cue Master</h3>
+                                <span class="menu-item-price">$18.000</span>
+                            </div>
+                            <p class="menu-item-desc">Tequila reposado, triple sec, sirope de agave, limón fresco y un borde escarchado premium.</p>
+                            <div class="menu-item-actions">
+                                <button class="btn btn-circle btn-minus" data-id="drink-2"><i data-lucide="minus"></i></button>
+                                <span class="item-qty" id="qty-drink-2">0</span>
+                                <button class="btn btn-circle btn-plus" data-id="drink-2"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drink 3 -->
+                    <div class="menu-item-card" data-category="drinks">
+                        <div class="menu-item-img drinks-img-3"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-title">Club Colombia Club</h3>
+                                <span class="menu-item-price">$8.000</span>
+                            </div>
+                            <p class="menu-item-desc">Cerveza nacional premium bien helada (Dorada o Roja), ideal para acompañar tu partida.</p>
+                            <div class="menu-item-actions">
+                                <button class="btn btn-circle btn-minus" data-id="drink-3"><i data-lucide="minus"></i></button>
+                                <span class="item-qty" id="qty-drink-3">0</span>
+                                <button class="btn btn-circle btn-plus" data-id="drink-3"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food 1 -->
+                    <div class="menu-item-card hidden" data-category="food">
+                        <div class="menu-item-img food-img-1"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-title">Burger Colpatria</h3>
+                                <span class="menu-item-price">$24.000</span>
+                            </div>
+                            <p class="menu-item-desc">200g de carne Angus seleccionada, queso cheddar derretido, tocino crujiente, papas francesas doradas.</p>
+                            <div class="menu-item-actions">
+                                <button class="btn btn-circle btn-minus" data-id="food-1"><i data-lucide="minus"></i></button>
+                                <span class="item-qty" id="qty-food-1">0</span>
+                                <button class="btn btn-circle btn-plus" data-id="food-1"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food 2 -->
+                    <div class="menu-item-card hidden" data-category="food">
+                        <div class="menu-item-img food-img-2"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-title">Tequeños Crujientes</h3>
+                                <span class="menu-item-price">$12.000</span>
+                            </div>
+                            <p class="menu-item-desc">6 Deditos rellenos de queso costeño fundido con salsa tártara de ajo y cilantro de la casa.</p>
+                            <div class="menu-item-actions">
+                                <button class="btn btn-circle btn-minus" data-id="food-2"><i data-lucide="minus"></i></button>
+                                <span class="item-qty" id="qty-food-2">0</span>
+                                <button class="btn btn-circle btn-plus" data-id="food-2"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food 3 -->
+                    <div class="menu-item-card hidden" data-category="food">
+                        <div class="menu-item-img food-img-3"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-title">Alitas BBQ Bourbon</h3>
+                                <span class="menu-item-price">$18.000</span>
+                            </div>
+                            <p class="menu-item-desc">8 Alitas doradas bañadas en reducción dulce de barbacoa de bourbon artesanal con bastones de apio.</p>
+                            <div class="menu-item-actions">
+                                <button class="btn btn-circle btn-minus" data-id="food-3"><i data-lucide="minus"></i></button>
+                                <span class="item-qty" id="qty-food-3">0</span>
+                                <button class="btn btn-circle btn-plus" data-id="food-3"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Order Bar -->
+                <div class="order-summary-bar card hidden" id="orderSummaryBar">
+                    <div class="bar-left">
+                        <i data-lucide="shopping-cart" class="cart-icon"></i>
+                        <div>
+                            <span class="bar-total-qty" id="cartTotalQty">0 items</span>
+                            <span class="bar-total-price" id="cartTotalPrice">$0 COP</span>
+                        </div>
+                    </div>
+                    <div class="bar-right">
+                        <button class="btn btn-outline btn-sm mr-2" id="clearCartBtn">Vaciar</button>
+                        <button class="btn btn-primary btn-sm" id="checkoutBtn">Pedir al Bar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOURNAMENTS SECTION -->
+        <section id="tournaments" class="section tournaments-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">CAMPEONATOS LOCALES</span>
+                    <h2 class="section-title">Torneos y <span class="neon-text-green">Eventos Oficiales</span></h2>
+                    <p class="section-subtitle">Mide tu precisión con los mejores jugadores de la zona en nuestros campeonatos regulares. Premios en efectivo.</p>
+                </div>
+
+                <div class="tournaments-list">
+                    <!-- Tournament Card 1 -->
+                    <div class="tournament-card card">
+                        <div class="t-badge text-green">3 BANDAS</div>
+                        <div class="t-main">
+                            <div class="t-info">
+                                <span class="t-date"><i data-lucide="calendar"></i> 14 de Junio, 2026 - 19:00</span>
+                                <h3 class="t-title">Copa Abierta Tres Bandas "Restrepo Master"</h3>
+                                <p class="t-desc">Máximo de 32 participantes en mesas de campeonato Hollywood. Formato de llaves de eliminación directa a 15 carambolas.</p>
+                            </div>
+                            <div class="t-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">Inscripción</span>
+                                    <span class="meta-val">$25.000</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Premio Mayor</span>
+                                    <span class="meta-val neon-text-green">$500.000</span>
+                                </div>
+                                <button class="btn btn-primary t-btn" data-tournament="Copa Tres Bandas Restrepo Master" data-fee="25000">Inscribirse</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tournament Card 2 -->
+                    <div class="tournament-card card">
+                        <div class="t-badge text-blue">BOLA 8</div>
+                        <div class="t-main">
+                            <div class="t-info">
+                                <span class="t-date"><i data-lucide="calendar"></i> 28 de Junio, 2026 - 18:00</span>
+                                <h3 class="t-title">Copa de Parejas Bola 8 "Grand Doubles"</h3>
+                                <p class="t-desc">Torneo en parejas alternas en mesa de pool. Clasificaciones locales previas. Gran trofeo y premio en efectivo.</p>
+                            </div>
+                            <div class="t-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">Inscripción / Pareja</span>
+                                    <span class="meta-val">$40.000</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Premio Mayor</span>
+                                    <span class="meta-val neon-text-blue">$800.000</span>
+                                </div>
+                                <button class="btn btn-primary t-btn" data-tournament="Copa Parejas Bola 8 Grand Doubles" data-fee="40000">Inscribirse</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT & LOCATION -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">DÓNDE ESTAMOS</span>
+                    <h2 class="section-title">Contacto y <span class="neon-text-blue">Ubicación</span></h2>
+                    <p class="section-subtitle">Visítanos en el tradicional Barrio Restrepo en Bogotá, un sector de fácil acceso y ambiente inigualable.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Info and Hours -->
+                    <div class="contact-info-panel">
+                        <div class="info-card card">
+                            <div class="info-item">
+                                <i data-lucide="map-pin" class="text-blue"></i>
+                                <div>
+                                    <h4>Dirección</h4>
+                                    <p>Carrera 19 # 17-45 Sur (Nivel 2)<br>Barrio Restrepo, Bogotá, Colombia</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i data-lucide="phone" class="text-pink"></i>
+                                <div>
+                                    <h4>Llámanos o WhatsApp</h4>
+                                    <p>+57 312 345 6789</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i data-lucide="mail" class="text-green"></i>
+                                <div>
+                                    <h4>Escríbenos</h4>
+                                    <p>contacto@billarescolpatriarestrepo.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hours-card card">
+                            <div class="hours-header">
+                                <h3>Horario de Atención</h3>
+                                <span class="status-pulse-badge open"><span class="pulse-dot"></span> ABIERTO AHORA</span>
+                            </div>
+                            <hr class="panel-divider">
+                            <div class="hours-row">
+                                <span>Lunes a Jueves:</span>
+                                <span>14:00 - 00:00</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Viernes y Sábados:</span>
+                                <span class="text-pink">14:00 - 02:00</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Domingos y Festivos:</span>
+                                <span>13:00 - 23:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form & Styled Map Mock -->
+                    <div class="contact-actions-panel card">
+                        <h3>Envíanos tu Consulta</h3>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactName">Nombre completo</label>
+                                    <input type="text" id="contactName" required placeholder="Juan Pérez">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Correo electrónico</label>
+                                    <input type="email" id="contactEmail" required placeholder="juan@ejemplo.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Mensaje o duda</label>
+                                <textarea id="contactMessage" rows="4" required placeholder="Deseo organizar un mini torneo empresarial de 10 personas..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar Mensaje <i data-lucide="send" class="btn-icon-right"></i></button>
+                        </form>
+
+                        <div class="map-mockup-container">
+                            <div class="map-mockup">
+                                <div class="map-pin-pulse">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <span class="map-label">Billares Colpatria - Restrepo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-area">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo footer-logo">
+                    <span class="neon-text-blue">BILLARES</span><span class="neon-text-pink">COLPATRIA</span>
+                </a>
+                <p>Tu club de billar de confianza en el Barrio Restrepo de Bogotá. Equipamiento profesional para deportistas y aficionados.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#booking">Reservas</a></li>
+                    <li><a href="#menu">Menú Bar</a></li>
+                    <li><a href="#tournaments">Torneos</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Novedades de Torneos</h4>
+                <p>Regístrate para enterarte antes que nadie de las aperturas de inscripciones a campeonatos.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Tu correo electrónico" required>
+                    <button type="submit" aria-label="Suscribirse"><i data-lucide="arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Billares Colpatria Restrepo. Todos los derechos reservados. Diseñado para amantes del billar en Bogotá.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AUTH MODAL (LOGIN & SIGNUP TABBED PANEL) -->
+    <div class="modal" id="authModal">
+        <div class="modal-card card auth-modal-card">
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="tabLoginBtn">Iniciar Sesión</button>
+                <button class="auth-tab-btn" id="tabRegisterBtn">Registrarse</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="auth-form-container" id="loginFormContainer">
+                <form id="loginForm" class="booking-form">
+                    <div class="form-group">
+                        <label for="loginEmail"><i data-lucide="mail"></i> Correo Electrónico</label>
+                        <input type="email" id="loginEmail" required placeholder="tuemail@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword"><i data-lucide="lock"></i> Contraseña</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mt-4">Entrar <i data-lucide="log-in" class="btn-icon-right"></i></button>
+                </form>
+            </div>
+            
+            <!-- Signup Form -->
+            <div class="auth-form-container hidden" id="registerFormContainer">
+                <form id="registerForm" class="booking-form">
+                    <div class="form-group">
+                        <label for="regName"><i data-lucide="user"></i> Nombre Completo</label>
+                        <input type="text" id="regName" required placeholder="Ej: Carlos Silva">
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail"><i data-lucide="mail"></i> Correo Electrónico</label>
+                        <input type="email" id="regEmail" required placeholder="tucorreo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword"><i data-lucide="lock"></i> Contraseña (mínimo 6 caracteres)</label>
+                        <input type="password" id="regPassword" required minlength="6" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mt-4">Crear Cuenta <i data-lucide="user-plus" class="btn-icon-right"></i></button>
+                </form>
+            </div>
+            <button class="btn btn-outline btn-block mt-2" id="closeAuthModalBtn">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- USER DASHBOARD MODAL -->
+    <div class="modal" id="dashboardModal">
+        <div class="modal-card card dashboard-modal-card">
+            <div class="dashboard-header-container">
+                <div class="db-avatar">
+                    <i data-lucide="user" class="avatar-icon"></i>
+                </div>
+                <div class="db-user-meta">
+                    <h3 id="dbUsername">Carlos Silva</h3>
+                    <p class="membership-level"><i data-lucide="award"></i> Socio Colpatria Gold</p>
+                </div>
+            </div>
+            
+            <hr class="panel-divider">
+            
+            <!-- Simulated balance card -->
+            <div class="balance-card">
+                <div class="bal-label">Monedero Virtual / Tu Saldo</div>
+                <div class="bal-value" id="dbBalance">$50.000 COP</div>
+                <div class="bal-desc">Fondo promocional de regalo para reservas</div>
+                <button class="btn btn-primary btn-sm mt-3" id="addFundsBtn"><i data-lucide="plus" class="mr-1"></i> Cargar $20.000</button>
+            </div>
+
+            <!-- Tabs / Accordions of activity -->
+            <div class="dashboard-sections">
+                <!-- Bookings section -->
+                <div class="db-section">
+                    <h4 class="db-sec-title"><i data-lucide="calendar"></i> Mis Mesas Apartadas</h4>
+                    <div class="db-list-container" id="dbReservationsList">
+                        <div class="db-empty-list">No tienes reservas activas.</div>
+                    </div>
+                </div>
+
+                <!-- Tournaments section -->
+                <div class="db-section">
+                    <h4 class="db-sec-title"><i data-lucide="trophy"></i> Mis Torneos Inscritos</h4>
+                    <div class="db-list-container" id="dbTournamentsList">
+                        <div class="db-empty-list">No te has inscrito en ningún torneo aún.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row-btns mt-4">
+                <button class="btn btn-outline" id="closeDashboardModalBtn">Cerrar</button>
+                <button class="btn btn-primary logout-btn" id="logoutBtn">Cerrar Sesión <i data-lucide="log-out" class="btn-icon-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOOKING CONFIRMATION MODAL -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-card card">
+            <div class="modal-header">
+                <div class="success-icon-container">
+                    <i data-lucide="check-circle-2" class="text-green"></i>
+                </div>
+                <h3>¡Reserva Confirmada!</h3>
+                <p>Tu mesa ha sido reservada con éxito. Te esperamos en el Club.</p>
+            </div>
+            <hr class="panel-divider">
+            <div class="ticket-details">
+                <div class="ticket-row">
+                    <span class="ticket-lbl">Mesa:</span>
+                    <span class="ticket-val" id="ticketTable">Mesa 2 (3 Bandas)</span>
+                </div>
+                <div class="ticket-row">
+                    <span class="ticket-lbl">Fecha y Hora:</span>
+                    <span class="ticket-val" id="ticketDateTime">05 de Junio, 20:00</span>
+                </div>
+                <div class="ticket-row">
+                    <span class="ticket-lbl">Duración:</span>
+                    <span class="ticket-val" id="ticketDuration">2 horas</span>
+                </div>
+                <div class="ticket-row">
+                    <span class="ticket-lbl">Código de Reserva:</span>
+                    <span class="ticket-val code-font" id="ticketCode">GCC-84920</span>
+                </div>
+                <div class="ticket-row total-ticket-row">
+                    <span class="ticket-lbl">Costo Descontado de Saldo:</span>
+                    <span class="ticket-val text-green" id="ticketTotal">$15.000 COP</span>
+                </div>
+                <div class="ticket-qr-container">
+                    <div class="qr-mock">
+                        <div class="qr-box qr-top-left"></div>
+                        <div class="qr-box qr-top-right"></div>
+                        <div class="qr-box qr-bottom-left"></div>
+                        <div class="qr-random-dots"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" id="closeBookingModalBtn">Entendido</button>
+        </div>
+    </div>
+
+    <!-- TOURNAMENT INSCRIPTION MODAL -->
+    <div class="modal" id="tournamentModal">
+        <div class="modal-card card">
+            <div class="modal-header">
+                <h3>Inscripción a Torneo</h3>
+                <p>Estás inscribiéndote en <span id="modalTournamentName" class="text-blue">Torneo Tres Bandas</span></p>
+            </div>
+            <hr class="panel-divider">
+            <form id="tournamentForm" class="booking-form">
+                <div class="form-group">
+                    <label for="tPlayerName">Nombre Completo del Jugador</label>
+                    <input type="text" id="tPlayerName" required readonly placeholder="Cargando...">
+                </div>
+                <div class="form-group">
+                    <label for="tPlayerPhone">Teléfono de Contacto</label>
+                    <input type="tel" id="tPlayerPhone" required placeholder="Ej: 312 345 6789">
+                </div>
+                <div class="form-group">
+                    <label for="tLevel">Nivel de Habilidad Declarado</label>
+                    <select id="tLevel" required>
+                        <option value="Principiante">Principiante</option>
+                        <option value="Intermedio" selected>Intermedio (Juego regular)</option>
+                        <option value="Avanzado">Avanzado (Federado / Club)</option>
+                    </select>
+                </div>
+                
+                <div class="price-summary">
+                    <div class="price-row total-row">
+                        <span>Costo de Inscripción:</span>
+                        <span id="tModalFee">$25.000 COP</span>
+                    </div>
+                </div>
+
+                <div class="form-row-btns">
+                    <button type="button" class="btn btn-outline" id="closeTournamentModalBtn">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar e Inscribirse</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- GENERAL ALERT MODAL (FOR BAR ORDERS, ERRORS, ETC) -->
+    <div class="modal" id="alertModal">
+        <div class="modal-card card text-center">
+            <div class="success-icon-container" id="alertIconContainer">
+                <i data-lucide="party-popper" class="text-pink text-center-icon" id="alertIcon"></i>
+            </div>
+            <h3 id="alertTitle">¡Pedido Recibido!</h3>
+            <p id="alertMessage">Tu simulación de pedido ha sido enviada al bar del club. En tu visita real esto se enviará directo a tu mesa.</p>
+            <button class="btn btn-primary btn-block mt-4" id="closeAlertModalBtn">Excelente</button>
+        </div>
+    </div>
+
+    <!-- CUSTOM APP LOGIC -->
+    <script src="app.js"></script>
+</body>
+</html>
