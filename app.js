@@ -7,12 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     let currentUser = null;
 
-    // Load active session from localStorage on startup
-    const savedSession = localStorage.getItem('gcc_session');
-    if (savedSession) {
-        currentUser = JSON.parse(savedSession);
-        updateUserUI();
-    }
+    
 
     // Modal elements for Auth
     const authModal = document.getElementById('authModal');
@@ -892,4 +887,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         alertModal.classList.add('open');
     }
+
+    const savedSession = localStorage.getItem('gcc_session');
+
+if (savedSession) {
+    try {
+        currentUser = JSON.parse(savedSession);
+        updateUserUI();
+    } catch (error) {
+        console.error('Error cargando sesión:', error);
+        localStorage.removeItem('gcc_session');
+    }
+}
 });
