@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // USER AUTHENTICATION & STATE STORAGE
     // ==========================================
-    let currentUser = null;
+   let currentUser = null;
 
     
 
@@ -231,6 +231,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mobileAuthGroup) mobileAuthGroup.classList.remove('hidden');
             if (mobileUserBadge) mobileUserBadge.classList.add('hidden');
         }
+    }
+
+    // Load active session AFTER all elements exist
+    const savedSession = localStorage.getItem('gcc_session');
+
+      if (savedSession) {
+       try {
+        currentUser = JSON.parse(savedSession);
+        updateUserUI();
+       } catch (error) {
+          console.error(error);
+          localStorage.removeItem('gcc_session');
+         }
     }
 
     function renderDashboard() {
@@ -888,15 +901,5 @@ document.addEventListener('DOMContentLoaded', () => {
         alertModal.classList.add('open');
     }
 
-    const savedSession = localStorage.getItem('gcc_session');
 
-if (savedSession) {
-    try {
-        currentUser = JSON.parse(savedSession);
-        updateUserUI();
-    } catch (error) {
-        console.error('Error cargando sesión:', error);
-        localStorage.removeItem('gcc_session');
-    }
-}
 });
